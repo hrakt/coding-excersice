@@ -33,3 +33,52 @@ var maxProfit = function (prices) {
 
   return profit;
 };
+
+//Given an array, rotate the array to the right by k steps, where k is non-negative.
+
+var rotate = function (nums, k) {
+  let temp = [...nums];
+  for (let i = 0; i < nums.length; i++) {
+    const position = (i + k) % nums.length;
+    console.log(temp[i]);
+    nums[position] = temp[i];
+  }
+  return nums;
+};
+
+///Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+var containsDuplicate = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (nums[i] === nums[j]) return true;
+    }
+  }
+  return false;
+};
+
+//Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+// Follow up: Could you implement a solution with a linear runtime complexity and without using extra memory?
+var singleNumber = function (nums) {
+  for (let i = 0; i < nums.length; i++) {
+    var singleNum = true;
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[i] == nums[j] && i != j) {
+        singleNum = false;
+      }
+    }
+    if (singleNum) {
+      return nums[i];
+    }
+  }
+  return 0;
+};
+
+var singleNumber = function (nums) {
+  let bit = 0;
+  for (let i = 1; i < nums.length; i++) {
+    nums[0] ^= nums[i];
+  }
+  return nums[0];
+};
